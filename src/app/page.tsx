@@ -3,6 +3,8 @@ import styles from "./page.module.scss";
 import Image from "next/image";
 import { useState } from "react";
 import { outfit } from "./fonts/fonts";
+import { FaCirclePlus } from "react-icons/fa6";
+
 export default function Home() {
   const data = [
     { image: "/chair_1.avif" },
@@ -35,6 +37,12 @@ export default function Home() {
         })}
       </section>
       <section className={styles.footer}>
+        <p className={styles.price}>
+          £199
+        </p>
+        <p className={styles.cta}>
+          <FaCirclePlus />
+        </p>
         <ul className={styles.menu}>
           <li
             onClick={(ev) => showText(ev)}

@@ -48,7 +48,7 @@
   display: flex;
   list-style-type: none;
   justify-content: space-between;
-  gap:0.3rem;
+  gap: 0.3rem;
   li {
     position: relative;
     text-align: center;
@@ -82,6 +82,36 @@
   }
 }
 
+.cta {
+  display: inline-flex;
+  border-radius: 100%;
+  position: absolute;
+  right: 1rem;
+  top: -4rem;
+  font: {
+    size: 3rem;
+  }
+  color: black;
+  background-color: white;
+}
+.price {
+  display: inline-flex;
+
+  position: absolute;
+  left: 1rem;
+  top: -5rem;
+  font: {
+    size: 2rem;
+    family: "coolvetica-regular";
+  }
+
+  color: black;
+  border-radius: 0.3rem;
+  border: 1px solid black;
+  padding: 0.5rem 2rem;
+  background-color: rgba(white, 0.3);
+  backdrop-filter: blur(5px);
+}
 .active {
   background-color: white;
   color: black;
@@ -90,6 +120,5 @@
 .inactive {
   background-color: gainsboro;
   color: black;
-  border-color: rgba(black,0.1);
-  
+  border-color: rgba(black, 0.1);
 }

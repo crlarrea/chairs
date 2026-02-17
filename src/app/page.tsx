@@ -1,66 +1,76 @@
+"use client";
+import styles from "./page.module.scss";
 import Image from "next/image";
-import styles from "./page.module.css";
-
+import { useState } from "react";
+import { outfit } from "./fonts/fonts";
 export default function Home() {
+  const data = [
+    { image: "/chair_1.avif" },
+    { image: "/chair_1.avif" },
+    { image: "/chair_1.avif" },
+    { image: "/chair_1.avif" },
+    { image: "/chair_1.avif" },
+    { image: "/chair_1.avif" },
+  ];
+
+  const [activeMenu, setActiveMenu] = useState("overview");
+  const showText = (ev) => {
+    const selectedMenu = ev.target.dataset.key;
+    setActiveMenu(selectedMenu);
+  };
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className={styles.main}>
+      <section className={styles.hero}>
+        {data.map((entry, index) => {
+          return (
+            <article className={styles.item} key={index}>
+              <Image
+                src={entry.image}
+                alt="chair"
+                fill
+                sizes="(max-width:1024px) 300px"
+              />
+            </article>
+          );
+        })}
+      </section>
+      <section className={styles.footer}>
+        <ul className={styles.menu}>
+          <li
+            onClick={(ev) => showText(ev)}
+            data-key="overview"
+            className={
+              activeMenu === "overview" ? styles.active : styles.inactive
+            }
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            overview
+          </li>
+          <li
+            onClick={(ev) => showText(ev)}
+            data-key="description"
+            className={
+              activeMenu === "description" ? styles.active : styles.inactive
+            }
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            description
+          </li>
+          <li
+            onClick={(ev) => showText(ev)}
+            data-key="measurement"
+            className={
+              activeMenu === "measurement" ? styles.active : styles.inactive
+            }
+          >
+            measurements
+          </li>
+        </ul>
+        <article className={`${styles.copy} ${outfit.className}`}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+          perferendis aut a, in, sint quas ducimus labore similique quo dolorum
+          inventore corrupti veniam voluptatibus vitae quia nihil! Illo, eius
+          et.
+        </article>
+      </section>
+    </main>
   );
 }

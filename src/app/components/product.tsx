@@ -2,22 +2,24 @@
 import styles from "@/app/page.module.scss";
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 import { useEffect } from "react";
-
+import { ItemProps } from "../types/types";
 import Image from "next/image";
 export default function Product({
   productName,
   image,
   description,
+  rating,
+  price,
   updateProduct,
-}) {
+}: ItemProps) {
   const [ref, entry] = useIntersectionObserver({
-    threshold: 0.3,
+    threshold: 1,
     root: null,
     rootMargin: "0px",
   });
   useEffect(() => {
     if (entry?.isIntersecting) {
-      updateProduct(productName, description);
+      updateProduct(productName, description, rating,price );
     }
   }, [entry?.isIntersecting]);
 
@@ -28,7 +30,7 @@ export default function Product({
         fill
         sizes="(max-width:1024px) 300px"
         alt={productName}
-        className={`${entry?.isIntersecting ? styles.imgAnimateIn : styles.imgAnimateOut}`}
+        className={`${entry?.isIntersecting ? styles.imgAnimateIn : ""}`}
       />
     </article>
   );

@@ -9,6 +9,7 @@
 }
 
 .hero {
+  position: relative;
   display: flex;
   flex-flow: column nowrap;
   overflow-x: hidden;
@@ -22,20 +23,40 @@
   scroll-snap-stop: always;
   position: relative;
   scroll-snap-align: center;
-  border: 1px solid red;
+  // border: 1px solid red;
   background-color: gainsboro;
   flex: 0 0 100%;
   img {
+    padding-top: 3rem;
     mix-blend-mode: darken;
     object-fit: contain;
-    object-position: center;
+    object-position: top;
     padding-bottom: 10rem;
+  }
+}
+
+.header {
+  position: fixed;
+  display: flex;
+  flex-flow: column nowrap;
+  top: 0;
+  padding: 1rem;
+  width: 100%;
+  // border: 1px solid red;
+  z-index: 1;
+}
+
+.brandName {
+  font: {
+    size: 2rem;
+    family: "coolvetica-regular";
   }
 }
 
 .footer {
   position: fixed;
   display: flex;
+  gap: 0.8rem;
   flex-flow: column nowrap;
   bottom: 0;
   padding: 0rem 1rem 1rem 1rem;
@@ -48,77 +69,102 @@
   display: flex;
   list-style-type: none;
   justify-content: space-between;
-  gap: 0.3rem;
+
   li {
     position: relative;
     text-align: center;
     flex: 1 1 10%;
     transition: all ease-in-out 0.3s;
-    padding: 0.5rem 0.7rem;
-    border: {
-      style: solid;
-      weight: 1px;
-    }
-    border-bottom: none;
-    border-top: {
-      right-radius: 0.5rem;
-      left-radius: 0.5rem;
-    }
+    padding: 0.8rem 1rem;
+
+    border-radius: 0.5rem;
   }
   font: {
     family: "coolvetica-regular";
     size: 1.1rem;
   }
   text-transform: capitalize;
+  z-index: 1;
 }
 
 .copy {
+  h2 {
+    display: inline-flex;
+    justify-content: space-between;
+    span {
+      display: inline-flex;
+      gap: 0.3rem;
+      font: {
+        size: 1rem;
+      }
+      svg {
+        color: #ffbe0b;
+      }
+    }
+  }
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
   background-color: white;
   color: black;
   padding: 2rem 1rem 1rem 1rem;
-  border-bottom: {
-    right-radius: 0.5rem;
-    left-radius: 0.5rem;
-  }
+  border-radius: 0.5rem;
+}
+
+.delivery {
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.3rem;
+  text-transform: capitalize;
+}
+
+.pricing {
+  width: 100%;
+  height: 62%;
+  display: flex;
+  flex-flow: row nowrap;
+  // border: 1px solid red;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: fixed;
+  left: 0;
+  top: 0rem;
+  padding: 1rem;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .cta {
   display: inline-flex;
   border-radius: 100%;
-  position: absolute;
-  right: 1rem;
-  top: -4rem;
   font: {
-    size: 3rem;
+    size: 1.5rem;
   }
   color: black;
-  background-color: white;
+  background-color: #ffbe0b;
+  padding: 0.8rem;
 }
 .price {
-  display: inline-flex;
-
-  position: absolute;
-  left: 1rem;
-  top: -5rem;
+  align-self: flex-start;
+  margin-top: 5rem;
+  // mix-blend-mode:exclusion;
   font: {
-    size: 2rem;
+    size: 1.5rem;
     family: "coolvetica-regular";
   }
 
   color: black;
   border-radius: 0.3rem;
-  border: 1px solid black;
   padding: 0.5rem 2rem;
-  background-color: rgba(white, 0.3);
+  background-color: rgba(#ffbe0b, 0.6);
   backdrop-filter: blur(5px);
 }
 .active {
   background-color: white;
   color: black;
-  border-color: white;
 }
 .inactive {
   background-color: gainsboro;
-  color: black;
-  border-color: rgba(black, 0.1);
+  color: gray;
 }

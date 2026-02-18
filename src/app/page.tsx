@@ -4,10 +4,16 @@ import Image from "next/image";
 import { useState } from "react";
 import { outfit } from "./fonts/fonts";
 import { FaPlus, FaStar, FaTruckMoving } from "react-icons/fa6";
+import Product from "./components/product";
 
 export default function Home() {
   const data = [
-    { image: "/chair_1.avif" },
+    {
+      product_name: "EKENÄSET",
+      image: "/chair_1.avif",
+      description:
+        "EKENÄSET armchair adds a stylish retro vibe to the room that’s inspired by 1950s Scandinavian design. The classic look goes anywhere in the home – and gives you sturdy and robust seating for many years.",
+    },
     {
       product_name: "VEDBO",
       image: "/chair_2.avif",
@@ -36,6 +42,18 @@ export default function Home() {
   ];
 
   const [activeMenu, setActiveMenu] = useState("overview");
+  const [productState, setProductState] = useState({
+    productName: "",
+    description: "",
+  });
+
+  const updateProduct = (productName: string, description: string) => {
+    setProductState({
+      productName,
+      description,
+    });
+    console.log(productState);
+  };
   const showText = (ev) => {
     const selectedMenu = ev.target.dataset.key;
     setActiveMenu(selectedMenu);
@@ -54,14 +72,13 @@ export default function Home() {
         </div>
         {data.map((entry, index) => {
           return (
-            <article className={styles.item} key={index}>
-              <Image
-                src={entry.image}
-                alt="chair"
-                fill
-                sizes="(max-width:1024px) 300px"
-              />
-            </article>
+            <Product
+              productName={entry.product_name}
+              description={entry.description}
+              image={entry.image}
+              updateProduct={updateProduct}
+              key={index}
+            />
           );
         })}
       </section>
@@ -97,17 +114,18 @@ export default function Home() {
         </ul>
         <article className={`${styles.copy} ${outfit.className}`}>
           <h2>
-            DYVLINGE
+            {productState.productName}
             <span>
               4 .3
               <FaStar />
             </span>
           </h2>
           <p>
-            MILA swivel easy chair was presented as the "anti-stress armchair"
+            {productState.description}
+            {/* MILA swivel easy chair was presented as the "anti-stress armchair"
             in our 1967 catalogue. A big success designed by Gillis Lundgren –
             now given new life with the name DYVLINGE in the Nytillverkad
-            collection.
+            collection. */}
           </p>
           <span className={styles.delivery}>
             <FaTruckMoving /> free delivery
